@@ -7,6 +7,7 @@ import java.sql.Date;
  */
 public class Second extends Thread {
     private int numSec = 0;
+    private int numSec7 = 0;
 
     @Override
     public void run()
@@ -15,8 +16,12 @@ public class Second extends Thread {
             sleep(1000);
             System.out.println(System.currentTimeMillis());
             numSec++;
-            if (numSec==6) {
+            numSec7++;
+            if (numSec==5) {
                 numSec = 0;
+            }
+            if (numSec7==7) {
+                numSec7 = 0;
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -27,7 +32,15 @@ public class Second extends Thread {
         return numSec==4?true:false;
     }
 
+    public boolean isSeventh() {
+        return numSec7==6?true:false;
+    }
+
     public void refresh() {
         numSec = 0;
+    }
+
+    public void refresh7() {
+        numSec7 = 0;
     }
 }
