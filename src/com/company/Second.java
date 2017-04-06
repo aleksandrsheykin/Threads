@@ -20,10 +20,10 @@ public class Second extends Thread {
     {
         try {
             while (true) {
-                sleep(1000);
-                if (mustWrite) {
+                //synchronized(this) {
+                    sleep(1000);
                     System.out.println(new Date());
-                }
+                //}
             }
         } catch (InterruptedException e) {
             e.printStackTrace();

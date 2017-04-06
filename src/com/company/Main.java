@@ -9,14 +9,5 @@ public class Main {
         second = new Second();
         fiveSecond = new FiveSecond(second);
         sevenSecond = new SevenSecond(second);
-
-        int i = 0;
-        while (i<15) {
-
-            i++;
-        }
-
     }
-
-
 }

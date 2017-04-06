@@ -18,16 +18,16 @@ public class SevenSecond implements Runnable {
         try {
             int i=0;
             while (true) {
-                i++;
                 Thread.sleep(1000);
-                if (i==7) {
-                    i = 0;
-                    second.mustWrite = false;
-                    //second.wait();
-                    System.out.println("777");
-                } else {
-                    second.mustWrite = true;
-                    //if (!second.isAlive()) second.notify();
+                synchronized(second) {
+                    i++;
+                    if (i == 7) {
+                        i = 0;
+                        second.wait();
+                        System.out.println("777");
+                    } else {
+                        if (!second.isAlive()) second.notify();
+                    }
                 }
             }
         } catch (InterruptedException e) {
