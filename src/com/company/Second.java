@@ -1,46 +1,32 @@
 package com.company;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * Created by admin on 06.04.2017.
  */
 public class Second extends Thread {
-    private int numSec = 0;
-    private int numSec7 = 0;
+    public boolean mustWrite;
+    Thread s;
+
+    public Second() {
+        mustWrite = true;
+        s = new Thread(this, "SecondThread");
+        s.start();
+    }
 
     @Override
     public void run()
     {
         try {
-            sleep(1000);
-            System.out.println(System.currentTimeMillis());
-            numSec++;
-            numSec7++;
-            if (numSec==5) {
-                numSec = 0;
-            }
-            if (numSec7==7) {
-                numSec7 = 0;
+            while (true) {
+                sleep(1000);
+                if (mustWrite) {
+                    System.out.println(new Date());
+                }
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-    }
-
-    public boolean isFifth() {
-        return numSec==4?true:false;
-    }
-
-    public boolean isSeventh() {
-        return numSec7==6?true:false;
-    }
-
-    public void refresh() {
-        numSec = 0;
-    }
-
-    public void refresh7() {
-        numSec7 = 0;
     }
 }
