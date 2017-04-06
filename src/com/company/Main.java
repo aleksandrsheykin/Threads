@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[] args) {
         second = new Second();
         fiveSecond = new FiveSecond(second);
-        sevenSecond = new SevenSecond();
+        sevenSecond = new SevenSecond(second);
 
         int i = 0;
         while (i<15) {

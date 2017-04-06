@@ -3,7 +3,7 @@ package com.company;
 /**
  * Created by admin on 06.04.2017.
  */
-public class FiveSecond extends Thread {
+public class FiveSecond implements Runnable {
     Thread t;
     Second second;
 
