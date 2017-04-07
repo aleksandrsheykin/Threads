@@ -16,15 +16,15 @@ public class SevenSecond implements Runnable {
     @Override
     public void run() {
         while (true) {
-            if (Main.count%7==0) {
-                System.out.println("Hello! I FiveSeconds thread");
-                try {
-                    synchronized(Main.locker) {
-                        Main.locker.wait();
-                    }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+            try {
+                synchronized(Main.locker) {
+                    Main.locker.wait();
                 }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            if (Main.count%7==0) {
+                System.out.println("Hello! I SevenSeconds thread 777");
             }
         }
     }

@@ -10,6 +10,6 @@ public class Main {
     public static void main(String[] args) {
         second = new Second();
         fiveSecond = new FiveSecond();
-        //sevenSecond = new SevenSecond(second);
+        sevenSecond = new SevenSecond(second);
     }
 }

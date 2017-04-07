@@ -22,7 +22,7 @@ public class Second extends Thread {
                 Main.count++;
                 System.out.println(new Date());
                 synchronized(Main.locker) {
-                    Main.locker.notify();
+                    Main.locker.notifyAll();
                 }
             }
         } catch (InterruptedException e) {
