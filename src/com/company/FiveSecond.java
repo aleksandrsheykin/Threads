@@ -1,37 +1,34 @@
 package com.company;
 
+import static java.lang.Thread.sleep;
+
 /**
  * Created by admin on 06.04.2017.
  */
 public class FiveSecond implements Runnable {
     Thread t;
     Second second;
+    int count;
+    Object obj;
 
-    public FiveSecond(Second second) {
+    public FiveSecond() {
         t = new Thread(this, "FiveSecondThread");
-        this.second = second;
         t.start();
     }
 
     @Override
     public void run() {
-        try {
-            int i=0;
-            while (true) {
-                Thread.sleep(1000);
-                synchronized(second) {
-                    i++;
-                    if (i == 5) {
-                        i = 0;
-                        second.wait();
-                        System.out.println("Hello! I FiveSeconds thread");
-                    } else {
-                        if (!second.isAlive()) second.notify();
-                    }
+        while (true) {
+            try {
+                synchronized(Main.locker) {
+                    Main.locker.wait();
                 }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+            if (Main.count%5==0) {
+                System.out.println("Hello! I FiveSeconds thread");
+            }
         }
     }
 

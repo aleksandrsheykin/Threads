@@ -6,11 +6,9 @@ import java.util.Date;
  * Created by admin on 06.04.2017.
  */
 public class Second extends Thread {
-    public boolean mustWrite;
     Thread s;
 
     public Second() {
-        mustWrite = true;
         s = new Thread(this, "SecondThread");
         s.start();
     }
@@ -20,10 +18,12 @@ public class Second extends Thread {
     {
         try {
             while (true) {
-                //synchronized(this) {
-                    sleep(1000);
-                    System.out.println(new Date());
-                //}
+                sleep(1000);
+                Main.count++;
+                System.out.println(new Date());
+                synchronized(Main.locker) {
+                    Main.locker.notify();
+                }
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
